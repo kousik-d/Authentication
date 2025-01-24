@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import "./PlanSelection.css";
-
+import { useNavigate } from 'react-router-dom';
+import * as ROUTES from '../../constants/routes';
 const houses = [
   {
     id: "1",
     name: "Sunny Villa",
-    price: "$350,000",
+    price: "350,000",
     location: "Los Angeles, CA",
     size: "2,500 sq.ft.",
     bedrooms: 4,
@@ -15,7 +16,7 @@ const houses = [
   {
     id: "2",
     name: "Ocean View Apartment",
-    price: "$1,200,000",
+    price: "1,200,000",
     location: "Miami, FL",
     size: "1,800 sq.ft.",
     bedrooms: 3,
@@ -25,7 +26,7 @@ const houses = [
   {
     id: "3",
     name: "Hilltop Cottage",
-    price: "$500,000",
+    price: "500,000",
     location: "Denver, CO",
     size: "2,000 sq.ft.",
     bedrooms: 3,
@@ -35,7 +36,7 @@ const houses = [
   {
     id: "4",
     name: "Urban Studio",
-    price: "$250,000",
+    price: "250,000",
     location: "New York City, NY",
     size: "800 sq.ft.",
     bedrooms: 1,
@@ -45,7 +46,7 @@ const houses = [
   {
     id: "5",
     name: "Lakeside Retreat",
-    price: "$750,000",
+    price: "750,000",
     location: "Chicago, IL",
     size: "2,200 sq.ft.",
     bedrooms: 4,
@@ -55,7 +56,7 @@ const houses = [
   {
     id: "6",
     name: "Mountain Chalet",
-    price: "$950,000",
+    price: "950,000",
     location: "Aspen, CO",
     size: "3,000 sq.ft.",
     bedrooms: 5,
@@ -65,7 +66,7 @@ const houses = [
   {
     id: "7",
     name: "City Penthouse",
-    price: "$2,500,000",
+    price: "2,500,000",
     location: "San Francisco, CA",
     size: "3,500 sq.ft.",
     bedrooms: 4,
@@ -75,7 +76,7 @@ const houses = [
   {
     id: "8",
     name: "Countryside Manor",
-    price: "$1,000,000",
+    price: "1,000,000",
     location: "Napa Valley, CA",
     size: "4,500 sq.ft.",
     bedrooms: 5,
@@ -85,7 +86,7 @@ const houses = [
   {
     id: "9",
     name: "Beachfront Bungalow",
-    price: "$650,000",
+    price: "650,000",
     location: "Honolulu, HI",
     size: "1,500 sq.ft.",
     bedrooms: 3,
@@ -95,12 +96,22 @@ const houses = [
   {
     id: "10",
     name: "Suburban Family Home",
-    price: "$400,000",
+    price: "400,000",
     location: "Dallas, TX",
     size: "2,100 sq.ft.",
     bedrooms: 4,
     bathrooms: 3,
     specialFeature: "Large backyard and community park",
+  },
+  {
+    id: "11",
+    name: "Single Plot",
+    price: "1",
+    location: "Dallas, TX",
+    size: "100 sq.ft.",
+    bedrooms: 4,
+    bathrooms: 3,
+    specialFeature: "Just a blanket",
   }
 ];
 
@@ -112,6 +123,7 @@ const sortedHouses = houses.sort((a, b) => {
 });
 
 const PlanSelection = () => {
+  const navigate = useNavigate();
   const [selectedPlan, setSelectedPlan] = useState(null);
 
   const handlePlanSelect = (planId) => {
@@ -119,8 +131,10 @@ const PlanSelection = () => {
   };
 
   const handleNextClick = () => {
-    alert(`You selected the plan with ID: ${selectedPlan}`);
-    // Navigate to the next page or perform another action here
+    const selectedPlanDetails = sortedHouses.find(
+      (plan) => plan.id === selectedPlan
+    );
+    navigate(ROUTES.PAYMENT, { state: { plan: selectedPlanDetails } });
   };
 
   return (
@@ -135,7 +149,7 @@ const PlanSelection = () => {
             onClick={() => handlePlanSelect(plan.id)}
           >
             <h2>{plan.name}</h2>
-            <p className="price">{plan.price}</p>
+            <p className="price">{"$"+plan.price}</p>
             <p><strong>Location: </strong>{plan.location}</p>
             <p><strong>Size: </strong> {plan.size}</p>
             <p><strong>Bedrooms: </strong> {plan.bedrooms}</p>

@@ -8,6 +8,8 @@ import PasswordForget from '../PasswordForget';
 import Home from '../Home';
 import Account from '../Account';
 import Admin from '../Admin';
+import Payment from '../payment';
+import PaymentSuccess from '../paymentSuccessful';
 
 
 import * as ROUTES from '../../constants/routes';
@@ -31,6 +33,8 @@ const App = ({firebase}) => {
           <Route exact path={ROUTES.ACCOUNT} element={<Account />} />
           <Route exact path={ROUTES.ADMIN} element={<Admin />} />
           <Route exact path={ROUTES.SIGN_OUT} element={<SignOut/>}/>
+          <Route exact path= {ROUTES.PAYMENT} element={<Payment/>}/>
+          <Route exact path= {ROUTES.PAYMENT_SUCCESS} element={<PaymentSuccess />} />
       </Routes>
       </div>
     </Router>
