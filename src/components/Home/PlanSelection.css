@@ -1,0 +1,89 @@
+.plan-selection {
+  max-width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.plan-container {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 20px;
+  scroll-behavior: smooth;
+}
+
+.plan-container::-webkit-scrollbar {
+  display: none;
+}
+
+.plan-card {
+  width: 400px;
+  flex: 0 0 auto;
+  background: #f9f9f9;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.plan-card.selected {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  background-color: #d1e7ff;
+  border: 2px solid #007bff;
+}
+
+.plan-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.plan-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.plan-card .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #3498db;
+}
+
+.plan-card p {
+  font-size: 0.9rem;
+  margin: 5px 0;
+  color: #555;
+}
+
+.next-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  width: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.next-button.disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.next-button.active:hover {
+  background-color: #0056b3;
+}
+
